@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html layout:decorate="~{LayoutAnonimo}">
+	<head>
+		<title>Iniciar sesión</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="container">
+				<div class="separador-50"></div>
+				<div class="separador-30"></div>
+				<div class="row justify-content-center">
+					<div class="col-md-3">
+						<div th:insert="MensajesFormulario.html :: mensajes_formulario"> </div>
+								
+						<form class="validate" action="/Seguridad/Ingresar" th:object="${modelo}" method="post">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					    	<div class="row">
+						    	<div class="col-12">
+						    		<div class="form-group">
+						    			<label>Usuario</label>
+						    			<input type="text" class="form-control" required th:field="*{usuario}" maxlength="50" />
+						    		</div>
+						    	</div>
+						    	<div class="col-12">
+						    		<div class="form-group">
+						    			<label>Contraseña</label>
+						    			<input type="password" class="form-control" required th:field="*{clave}" maxlength="50" />
+						    		</div>
+						    	</div>
+						    	<div class="col-12">
+						    		<div class="form-group text-center">
+						    			<div class="separador-10"></div>
+						    			<input type="submit" class="btn btn-info" value="Ingresar"/>
+						    		</div>
+						    	</div>
+					    	</div>
+					    </form>
+					</div>
+				</div>
+		    </div>
+		</div>
+	</body>
+</html>

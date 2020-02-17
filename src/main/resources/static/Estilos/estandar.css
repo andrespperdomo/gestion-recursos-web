@@ -1,0 +1,18 @@
+/********** Formularios **********/
+
+form.validate input.error, form.validate select.error { border-color: #ffb8b0; background-color: #fdf5f6; }
+form.validate label.error { color: #bf4545; }
+form.validate input.form-control:focus { box-shadow: none; }
+form.validate input.form-control, form.validate select.form-control { box-shadow: none; transition: border-color .5s ease-out; }
+form.validate input:required:valid {border-left: 3px solid; border-left-color: green; }
+form.validate input:invalid { border-left: 3px solid; border-left-color: #ffb8b0; }
+
+
+
+/********** Utilidades **********/
+.separador-5 { height: 5px; }
+.separador-10 { height: 10px; }
+.separador-20 { height: 20px; }
+.separador-30 { height: 30px; }
+.separador-40 { height: 40px; }
+.separador-50 { height: 50px; }
