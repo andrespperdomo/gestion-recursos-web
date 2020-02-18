@@ -35,7 +35,7 @@ public class UsuarioController extends BaseController {
 		return "usuario/Filtro";
 	}
 	
-	@GetMapping("/Crear")
+	@GetMapping("Crear")
 	public String Crear(Model modelo) {
 		ConfigurarService();
 		modelo.addAttribute("cl_formaction", "Crear");

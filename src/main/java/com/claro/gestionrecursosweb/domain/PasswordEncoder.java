@@ -11,7 +11,6 @@ public class PasswordEncoder implements org.springframework.security.crypto.pass
 
 	@Override
 	public String encode(CharSequence rawPassword) {
-		System.out.println("******************************************* PasswordEncoder.encode");
 		return Hashing.sha256().hashString(rawPassword, StandardCharsets.UTF_8).toString();
 	}
 
