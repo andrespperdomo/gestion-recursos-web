@@ -1,5 +1,6 @@
 package com.claro.gestionrecursosweb.domain;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.core.ParameterizedTypeReference;
@@ -70,11 +71,12 @@ public class ApiService<Dto, IdDataType> implements ICrudService<Dto, IdDataType
 	}
 
 	@Override
-	public Iterable<Dto> findAll() {
+	public Iterable<Dto> findAll(Class<Dto> tipo) {
 		try {
-			System.out.println("---------------------------------------------- " + apiservicename);
 			ResponseEntity<RespuestaCustomizada<Iterable<Dto>>> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename, HttpMethod.GET, null, new ParameterizedTypeReference<RespuestaCustomizada<Iterable<Dto>>>() {});
-			return responseEntity.getBody().getData();
+			ObjectMapper mapper = new ObjectMapper();
+			Iterable<Dto> mapResult = mapper.convertValue(responseEntity.getBody().getData(), mapper.getTypeFactory().constructCollectionType(ArrayList.class, tipo));
+			return mapResult;
 		} catch(Exception e) {
 			// Controlar errores correctamente, obtener errores!
 			System.out.println("*****************************************************" + e.getMessage());

@@ -34,7 +34,7 @@ public class PersonaController extends BaseController {
 	public String Filtro(Model model) {
 		ConfigurarService();
 		
-		Iterable<PersonaDto> dto = service.findAll();
+		Iterable<PersonaDto> dto = service.findAll(PersonaDto.class);
 		
 		model.addAttribute("modelo", dto);
 		return dominio + "/Filtro";

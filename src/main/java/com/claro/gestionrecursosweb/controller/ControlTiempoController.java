@@ -31,7 +31,7 @@ public class ControlTiempoController extends BaseController {
 	public String Filtro(Model model) {
 		ConfigurarService();
 		
-		Iterable<EmpleadoControlDto> dto = service.findAll();
+		Iterable<EmpleadoControlDto> dto = service.findAll(EmpleadoControlDto.class);
 		
 		model.addAttribute("modelo", dto);
 		return "persona/Filtro";

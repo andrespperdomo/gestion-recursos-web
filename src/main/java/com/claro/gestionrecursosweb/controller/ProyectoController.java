@@ -44,7 +44,7 @@ public class ProyectoController extends BaseController {
 	public String filtro(Model model) {
 		configurarService();
 		
-		Iterable<ProyectoDto> dto = service.findAll();
+		Iterable<ProyectoDto> dto = service.findAll(ProyectoDto.class);
 		
 		model.addAttribute("modelo", dto);
 		return dominio + "/Filtro";
@@ -101,9 +101,9 @@ public class ProyectoController extends BaseController {
 	
 	private void cargarListas(Model modelo) {
 		servicePresupuesto.setapiservicename(dominio_presupuesto);
-		Iterable<PresupuestoDto> presupuestos = servicePresupuesto.findAll();
+		Iterable<PresupuestoDto> presupuestos = servicePresupuesto.findAll(PresupuestoDto.class);
 		serviceProyectoTipo.setapiservicename(dominio_proyectotipo);
-		Iterable<ProyectoTipoDto> proyectoTipos = serviceProyectoTipo.findAll();
+		Iterable<ProyectoTipoDto> proyectoTipos = serviceProyectoTipo.findAll(ProyectoTipoDto.class);
 		
 		modelo.addAttribute("presupuestos", presupuestos);		
 		modelo.addAttribute("proyectoTipos", proyectoTipos);

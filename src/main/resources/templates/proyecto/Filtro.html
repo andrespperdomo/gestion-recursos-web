@@ -33,9 +33,13 @@
 				        	<td><span th:text="${item.codigoproyecto}"></span></td>
 				            <td>
 				            	<span th:text="${item.nombre}"></span>
-				            	<span th:text="${item.fechainicio}"></span>
 				            </td>
-				            <td><span th:text="${item.fechafin}"></span></td>
+				            <td>
+				            	<span th:text="${#dates.format(item.fechainicio, 'dd/MM/yyyy')}"></span>
+			            	</td>
+				            <td>
+				            	<span th:text="${#dates.format(item.fechafin, 'dd/MM/yyyy')}"></span>
+			            	</td>
 				        </tr>
 				    </tbody>
 				</table>    

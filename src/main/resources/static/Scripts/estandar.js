@@ -17,7 +17,15 @@ $(function() {
 	/**
 	 * Se activa validación de formularios
 	 */
-	$("form.validate").validate();
+	$("form.validate").validate({
+		errorPlacement: function ( error, element ) {	
+	        if(element.parent().hasClass('input-group')){
+	          error.insertAfter( element.parent() );
+	        } else {
+	          	error.insertAfter( element );
+	        }	
+		}
+	});
 	
 	jQuery.validator.addMethod("notEqual", function (value, element, param) {
 	    return this.optional(element) || value != '0';

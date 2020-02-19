@@ -12,7 +12,7 @@ public interface ICrudService<Entity, IdDataType> {
 
 	public boolean existsById(IdDataType id);
 
-	public Iterable<Entity> findAll();
+	public Iterable<Entity> findAll(Class<Entity> tipo);
 
 	public long count();
 
