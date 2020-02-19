@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Layout}">
+	<head>
+		<title>Usuario</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+		
+			<div th:insert="MensajesFormulario.html :: mensajes_formulario"> </div>
+		
+		    <form class="validate" action="/Usuario" th:attr="action='/Persona/'+${cl_formaction}" th:object="${modelo}" method="post">
+		    	<div class="row">
+			    	<input type="hidden" th:field="*{id}" />
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Tipo documento</label>
+			    			<select class="form-control" required th:field="*{codtipodocumento}" data-rule-min="1" data-msg-min="Debe seleccionar una opción">
+			    				<option value="0">Seleccione...</option>
+			    				<option value="1">Cédula de ciudadanía</option>
+								<option value="2">Adulto sin identidad</option>
+								<option value="3">Cédula de extranjería</option>
+								<option value="4">Menor sin identificación</option>
+								<option value="5">Pasaporte</option>
+								<option value="6">Registro Civil</option>
+								<option value="7">Tarjeta de identidad</option>
+			    			</select>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Número <span class="d-md-none d-xl-inline">de</span> documento</label>
+			    			<input type="text" class="form-control" required th:field="*{numerodocumento}" maxlength="15"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Primer nombre</label>
+			    			<input type="text" class="form-control" required th:field="*{nombre1}" maxlength="50"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Segundo nombre</label>
+			    			<input type="text" class="form-control" th:field="*{nombre2}" maxlength="50"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Primer apellido</label>
+			    			<input type="text" class="form-control" required th:field="*{apellido1}" maxlength="50"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Segundo apellido</label>
+			    			<input type="text" class="form-control" th:field="*{apellido2}" maxlength="50"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Teléfono</label>
+			    			<input type="text" class="form-control" required th:field="*{telefono}" maxlength="50"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Correo electrónico</label>
+			    			<input type="email" class="form-control" th:field="*{correo}" data-rule-email="true" maxlength="200"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-6">
+			    		<div class="form-group">
+			    			<label>Dirección de residencia</label>
+			    			<input type="text" class="form-control" th:field="*{direccionresidencia}" maxlength="500"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Género</label>
+			    			<select class="form-control" required th:field="*{genero}" data-rule-notEqual="0" data-msg-notEqual="Debe seleccionar una opción">
+			    				<option value="0">Seleccione...</option>
+			    				<option value="F">Femenino</option>
+			    				<option value="M">Masculino</option>    				
+			    			</select>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Fecha nacimiento</label>
+			    			<input type="text" class="form-control cl-date-picker" th:id="fechanacimiento" th:name="fechanacimiento" autocomplete="off" th:value="${modelo.fechanacimiento}?${#dates.format(modelo.fechanacimiento, 'dd/MM/yyyy')}:''" maxlength="10"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-12">
+			    		<div class="form-group text-center">
+			    			<div class="separador-30"></div>
+			    			<input type="submit" class="btn btn-info" value="Guardar"/>
+			    		</div>
+			    	</div>
+		    	</div>
+		    </form>
+		</div>
+	</body>
+</html>

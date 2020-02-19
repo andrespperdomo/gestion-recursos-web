@@ -16,13 +16,15 @@ import com.claro.gestionrecursosweb.dto.UsuarioDto;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
  
+	private final String dominio = "seguridad";
+	
 	@Autowired
 	private SeguridadService seguridadService;
 	
     @Override
     public Authentication authenticate(Authentication authentication) 
       throws AuthenticationException {
-    	seguridadService.setapiservicename("Seguridad");
+    	seguridadService.setapiservicename(dominio);
   
         String usuarionombre = authentication.getName();
         String password = authentication.getCredentials().toString();
@@ -38,8 +40,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         	} catch (UsernameNotFoundException e) {
         		
         	}
-        	System.out.println("*************************************************** Usuario autenticado: " + "Usuario: " + usuario.getNombre() + "; clave: " + usuario.getClave());
-            return new UsernamePasswordAuthenticationToken(usuarioDetalles.getUsername(), usuarioDetalles.getPassword(), usuarioDetalles.getAuthorities());
+        	return new UsernamePasswordAuthenticationToken(usuarioDetalles.getUsername(), usuarioDetalles.getPassword(), usuarioDetalles.getAuthorities());
         } else {
             return null;
         }

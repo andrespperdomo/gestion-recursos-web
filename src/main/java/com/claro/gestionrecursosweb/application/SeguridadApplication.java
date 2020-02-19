@@ -10,13 +10,15 @@ import com.claro.gestionrecursosweb.dto.UsuarioDto;
 @Service
 public class SeguridadApplication {
 	
+	private final String dominio = "seguridad";
+	
 	@Autowired
 	private SeguridadService seguridadService;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	public void configurarServices() {
-		seguridadService.setapiservicename("seguridad");
+		seguridadService.setapiservicename(dominio);
 	}
 	
 	public Integer iniciarSesion(UsuarioDto dto) {

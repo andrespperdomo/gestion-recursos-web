@@ -12,7 +12,8 @@ public class GestionRecursosWebApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GestionRecursosWebApplication.class, args);
 	}
-	   
+	
+	
 	@Bean
     public RestTemplate getRestTemplate(){
         return new RestTemplate();

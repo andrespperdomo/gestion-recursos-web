@@ -6,14 +6,26 @@
 	
 	<link href="/Complementos/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="/Complementos/gijgo-combined-1.9.13/css/gijgo.min.css" rel="stylesheet" />
+	<link href="/Complementos/fontawesome-free-5.12.1-web/css/all.min.css" rel="stylesheet"/>
+	
+	<th:block layout:fragment="estilos"/>
+	
 	<link href="/Estilos/estandar.css" rel="stylesheet" />
 </head>
 <body>
 	<header th:insert="Header.html"></header>
 
-	<div class="separador-40"></div>
-	<div class="container">
-		<div layout:fragment="content"></div>
+	<div class="separador-10"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-2 collapse show d-md-flex bg-light pt-2 pl-0" id="sidebar" sec:authorize="isAuthenticated()">
+				<div th:replace="Menu.html"></div>
+			</div>
+			<div class="col">
+				<div th:replace="MigaPan.html" sec:authorize="isAuthenticated()"></div>
+				<div layout:fragment="content"></div>
+			</div>
+		</div>
 	</div>
 
 	<script type="text/javascript" src="/Complementos/jquery-3.4.1-dist/jquery-3.4.1.min.js"></script>
@@ -25,6 +37,9 @@
 	<script type="text/javascript" src="/Complementos/gijgo-combined-1.9.13/js/gijgo.min.js"></script>
 	<script type="text/javascript" src="/Complementos/gijgo-combined-1.9.13/js/messages/messages.es-es.min.js"></script>
 	
+	<script type="text/javascript" src="/Complementos/fontawesome-free-5.12.1-web/js/all.min.js"></script>
+
+	<th:block layout:fragment="scripts"/>
 
 	<script type="text/javascript" src="/Scripts/estandar.js"></script>
 </body>

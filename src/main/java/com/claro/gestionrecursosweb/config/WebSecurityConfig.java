@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+
 import com.claro.gestionrecursosweb.domain.PasswordEncoder;
 import com.claro.gestionrecursosweb.domain.SeguridadService;
 
@@ -34,8 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/Seguridad/Ingresar").permitAll()
 				.usernameParameter("usuario").passwordParameter("clave")
 			.failureUrl("/Seguridad/Ingresar?error=true")
-			.and().logout().permitAll()
-			.logoutSuccessUrl("/Seguridad/loging?logout");
+			.and()
+			.logout()
+				.logoutUrl("/Seguridad/CerrarSesion")
+				.logoutSuccessUrl("/");
 	}
 
 	public PasswordEncoder passwordEncoder() {

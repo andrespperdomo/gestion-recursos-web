@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>	
+	<ul class="nav flex-column flex-nowrap overflow-hidden cl-menu">
+	    <li class="nav-item">
+	        <a class="nav-link text-truncate" href="/">
+	        	<i class="fa fa-home"></i> <span class="d-none d-sm-inline">Inicio</span>
+	        </a>
+	    </li>
+	    <li class="nav-item cl-menu-group" sec:authorize="hasAuthority('ADMIN')">
+	        <a class="nav-link collapsed text-truncate" href="#submenu-admin" data-toggle="collapse" data-target="#submenu-admin">
+	        	<i class="fa fa-table"></i> 
+	        	<span class="d-none d-sm-inline">Administración</span>
+	        </a>
+	        <div class="collapse cl-submenu cl-menu-group" id="submenu-admin" aria-expanded="false">
+	        	<a class="nav-link collapsed text-truncate" href="#submenu-admin-proyecto" data-toggle="collapse" data-target="#submenu-admin-proyecto">
+	        		<i class="far fa-folder-open"></i> 
+	        		<span>Proyectos</span>
+	        	</a>
+	        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-proyecto">
+		            <ul class="flex-column pl-2 nav">
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/Proyecto/Filtro?clm=ayf">
+		                		<i class="fas fa-search"></i>
+		                		<span>Buscar</span>
+		                	</a>
+		                </li>
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/Proyecto/Crear?clm=ayn">
+		                		<i class="fas fa-plus"></i>
+		                		<span>Nuevo</span>
+		                	</a>
+		                </li>
+		            </ul>
+		        </div>
+	        	<a class="nav-link collapsed text-truncate" href="#submenu-admin-persona" data-toggle="collapse" data-target="#submenu-admin-persona">
+	        		<i class="fas fa-users"></i> 
+	        		<span>Personas</span>
+	        	</a>
+	        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-persona">
+		            <ul class="flex-column pl-2 nav">
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/Persona/Filtro?clm=apf">
+		                		<i class="fas fa-search"></i>
+		                		<span>Buscar</span>
+		                	</a>
+		                </li>
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/Persona/Crear?clm=apn">
+		                		<i class="fas fa-plus"></i>
+		                		<span>Nuevo</span>
+		                	</a>
+		                </li>
+		            </ul>
+		        </div>
+	        </div>
+	    </li>
+	    <li class="nav-item" sec:authorize="isAuthenticated()">
+	    	<a class="nav-link text-truncate" href="/EmpleadoControl/Filtro?clm=ef">
+	    		<i class="far fa-clock"></i>
+	    		<span class="d-none d-sm-inline">Registrar tiempo</span>
+	    	</a>
+	    </li>
+	</ul>
+</body>
+</html>

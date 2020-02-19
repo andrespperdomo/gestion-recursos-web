@@ -6,6 +6,7 @@ public class UsuarioDto {
 
 	private Integer id;
 	private Integer codusuariorol;
+	private Integer codpersona;
 	private String usuario;
 	private String nombre;
 	private String clave;
@@ -23,6 +24,12 @@ public class UsuarioDto {
 	}
 	public void setCodusuariorol(Integer codusuariorol) {
 		this.codusuariorol = codusuariorol;
+	}
+	public Integer getCodpersona() {
+		return this.codpersona;
+	}
+	public void setCodpersona(Integer codpersona) {
+		this.codpersona = codpersona;
 	}
 	public String getUsuario() {
 		return usuario;

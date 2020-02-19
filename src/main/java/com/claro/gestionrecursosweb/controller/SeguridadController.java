@@ -11,6 +11,8 @@ import com.claro.gestionrecursosweb.dto.UsuarioDto;
 @RequestMapping("/Seguridad")
 public class SeguridadController extends BaseController {
 
+	private final String dominio = "seguridad";
+	
 	public void ConfigurarService() {
 		
 	}
@@ -21,7 +23,7 @@ public class SeguridadController extends BaseController {
 		
 		model.addAttribute("modelo", new UsuarioDto());
 		
-		return "seguridad/Ingresar";
+		return dominio + "/Ingresar";
 	}
 			
 }

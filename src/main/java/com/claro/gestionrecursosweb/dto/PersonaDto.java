@@ -18,6 +18,7 @@ public class PersonaDto {
 	private Date fechanacimiento;	
 	private Date fechacreacion;
 	private Date fechamodificacion;
+	public String incorrectData;
 	
 	public Integer getId() {
 		return id;

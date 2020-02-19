@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.claro.gestionrecursosweb.model.RespuestaCustomizada;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -21,7 +23,7 @@ public class ApiService<Dto, IdDataType> implements ICrudService<Dto, IdDataType
 	@Autowired
 	protected RestTemplate restTemplate;
 	
-	@Value("${custom.api.urlbase}")
+	@Value("${claro.api.urlbase}")
 	protected String apiurl;
 	
 	public void setapiservicename(String apiservicename) {
@@ -29,16 +31,31 @@ public class ApiService<Dto, IdDataType> implements ICrudService<Dto, IdDataType
 	}
 	
 	@Override
-	public Dto save(Dto entity, Class<Dto> tipo) {		
-		ResponseEntity<Dto> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename, HttpMethod.POST, new HttpEntity<Dto>(entity), new ParameterizedTypeReference<Dto>() {});
-		Dto dtoRespuesta = new ObjectMapper().convertValue(responseEntity.getBody(), tipo);
-		return dtoRespuesta;
+	public Dto insert(Dto entity, Class<Dto> tipo) {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		ResponseEntity<RespuestaCustomizada<Dto>> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename, HttpMethod.POST, new HttpEntity<Dto>(entity), new ParameterizedTypeReference<RespuestaCustomizada<Dto>>() {});
+		RespuestaCustomizada<Dto> dtoRespuesta = mapper.convertValue(responseEntity.getBody(), RespuestaCustomizada.class);
+		Dto dtoRespuesta2 = mapper.convertValue(dtoRespuesta.getData(), tipo);
+		return dtoRespuesta2;
+	}
+	
+	@Override
+	public Dto update(IdDataType id, Dto entity, Class<Dto> tipo) {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		ResponseEntity<RespuestaCustomizada<Dto>> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename + "/" + id, HttpMethod.PUT, new HttpEntity<Dto>(entity), new ParameterizedTypeReference<RespuestaCustomizada<Dto>>() {});
+		RespuestaCustomizada<Dto> dtoRespuesta = mapper.convertValue(responseEntity.getBody(), RespuestaCustomizada.class);
+		Dto dtoRespuesta2 = mapper.convertValue(dtoRespuesta.getData(), tipo);
+		return dtoRespuesta2;
 	}
 
 	@Override
 	public Optional<Dto> findById(IdDataType id, Class<Dto> tipo) {
-		ResponseEntity<Dto> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename + "/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<Dto>() {});
-		Dto dtoRespuesta = new ObjectMapper().convertValue(responseEntity.getBody(), tipo);
+		ResponseEntity<RespuestaCustomizada<Dto>> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename + "/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<RespuestaCustomizada<Dto>>() {});
+		Dto dtoRespuesta = new ObjectMapper().convertValue(responseEntity.getBody().getData(), tipo);
 
 		if (dtoRespuesta == null)
 			return null;
@@ -54,8 +71,15 @@ public class ApiService<Dto, IdDataType> implements ICrudService<Dto, IdDataType
 
 	@Override
 	public Iterable<Dto> findAll() {
-		ResponseEntity<Iterable<Dto>> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename, HttpMethod.GET, null, new ParameterizedTypeReference<Iterable<Dto>>() {});
-		return responseEntity.getBody();
+		try {
+			System.out.println("---------------------------------------------- " + apiservicename);
+			ResponseEntity<RespuestaCustomizada<Iterable<Dto>>> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename, HttpMethod.GET, null, new ParameterizedTypeReference<RespuestaCustomizada<Iterable<Dto>>>() {});
+			return responseEntity.getBody().getData();
+		} catch(Exception e) {
+			// Controlar errores correctamente, obtener errores!
+			System.out.println("*****************************************************" + e.getMessage());
+		}
+		return null;
 	}
 
 	@Override

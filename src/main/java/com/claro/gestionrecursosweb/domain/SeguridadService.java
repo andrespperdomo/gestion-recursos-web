@@ -3,6 +3,7 @@ package com.claro.gestionrecursosweb.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class SeguridadService extends ApiService<UsuarioDto, Integer> implements UserDetailsService {
 
+	@Value("${claro.dominio.seguridad.nombre}")
+	private String dominio;
+	
 	/**
 	 * El objeto usuario ya debe traer la contraseña crifrada
 	 * @param dto
@@ -34,8 +38,7 @@ public class SeguridadService extends ApiService<UsuarioDto, Integer> implements
 
 	@Override
 	public UserDetails loadUserByUsername(String usuario) throws UsernameNotFoundException {
-		apiservicename = "Seguridad";
-		
+		apiservicename = dominio;
 		ResponseEntity<UsuarioDto> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename + "?usuario=" + usuario, HttpMethod.GET, null, new ParameterizedTypeReference<UsuarioDto>() {});
 		UsuarioDto respuesta = new ObjectMapper().convertValue(responseEntity.getBody(), UsuarioDto.class);
 		

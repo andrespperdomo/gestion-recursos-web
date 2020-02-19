@@ -4,7 +4,9 @@ import java.util.Optional;
 
 public interface ICrudService<Entity, IdDataType> {	
 		
-	public Entity save(Entity entity, Class<Entity> tipo);
+	public Entity insert(Entity entity, Class<Entity> tipo);
+	
+	public Entity update(IdDataType id, Entity entity, Class<Entity> tipo);
 	
 	public Optional<Entity> findById(IdDataType id, Class<Entity> tipo);
 
