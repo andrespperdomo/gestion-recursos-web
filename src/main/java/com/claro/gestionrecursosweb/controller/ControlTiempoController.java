@@ -2,6 +2,8 @@ package com.claro.gestionrecursosweb.controller;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,13 +49,13 @@ public class ControlTiempoController extends BaseController {
 	}
 	
 	@PostMapping("/Crear")
-	public String Crear(EmpleadoControlDto dto, BindingResult result, Model modelo) {
+	public String Crear(EmpleadoControlDto dto, BindingResult result, Model modelo, HttpServletRequest request) {
 		ConfigurarService();
 		modelo.addAttribute("cl_formaction", "Crear");
 		
 		EmpleadoControlDto dtoResultado = service.insert(dto, EmpleadoControlDto.class);
 		
-		return redireccion("Editar", dtoResultado.getId().toString(), "S", "C");
+		return redireccion("Editar", dtoResultado.getId().toString(), "S", "C", request);
 	}
 	
 	@GetMapping("/Editar/{id}")

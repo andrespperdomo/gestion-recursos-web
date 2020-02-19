@@ -2,6 +2,8 @@ package com.claro.gestionrecursosweb.controller;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -53,27 +55,26 @@ public class ProyectoController extends BaseController {
 	@GetMapping("Crear")
 	public String crear(Model modelo) {
 		configurarService();
-		cargarListas(modelo);
 		modelo.addAttribute("cl_formaction", "Crear");
 		
-		modelo.addAttribute("modelo", new ProyectoDto());		
+		modelo.addAttribute("modelo", new ProyectoDto());
+		cargarListas(modelo);
 		return dominio + "/Proyecto";
 	}
 	
 	@PostMapping("/Crear")
-	public String crear(ProyectoDto dto, BindingResult result, Model modelo) {
+	public String crear(ProyectoDto dto, BindingResult result, Model modelo, HttpServletRequest request) {
 		configurarService();
 		modelo.addAttribute("cl_formaction", "Crear");
 		
-		ProyectoDto dtoResultado = service.insert(dto, ProyectoDto.class);
+		//ProyectoDto dtoResultado = service.insert(dto, ProyectoDto.class);
 		
-		return redireccion("Editar", dtoResultado.getId().toString(), "S", "C");
+		return redireccion("Editar", /*dtoResultado.getId().toString()*/"100", "S", "C", request);
 	}
 	
 	@GetMapping("/Editar/{id}")
 	public String editar(@PathVariable Integer id, Model modelo, @RequestParam(required = false) String cla) {
 		configurarService();
-		cargarListas(modelo);
 		mostrarMensajes(modelo, cla);		
 		modelo.addAttribute("cl_formaction", "Editar");
 		
@@ -82,20 +83,20 @@ public class ProyectoController extends BaseController {
 			dtoResultado = Optional.of(new ProyectoDto());
 				
 		modelo.addAttribute("modelo", dtoResultado.get());
+		cargarListas(modelo);
 		return dominio + "/Proyecto";
 	}
 	
 	@PostMapping("/Editar")
 	public String editar(ProyectoDto dto, BindingResult result, Model modelo) {
-		configurarService();
-		cargarListas(modelo);
+		configurarService();		
 		modelo.addAttribute("cl_formaction", "Editar");
 		
-		ProyectoDto dtoResultado = service.update(dto.getId(), dto, ProyectoDto.class);
+		ProyectoDto dtoResultado = service.update(dto.getId(), dto, ProyectoDto.class);				
+		modelo.addAttribute("modelo", dtoResultado);
 		
 		mostrarMensajes(modelo, "S", "U");
-		
-		modelo.addAttribute("modelo", dtoResultado);
+		cargarListas(modelo);
 		return dominio + "/Proyecto";
 	}
 	

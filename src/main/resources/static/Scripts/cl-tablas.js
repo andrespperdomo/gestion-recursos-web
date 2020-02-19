@@ -29,4 +29,10 @@ $(function() {
 			}
 		}
 	});
+	
+	$('.cl-tabla').on( 'page.dt', function () {
+		setTimeout(clTablasBotonConsultarMantenerMenu, 100);
+	}).on( 'search.dt', function () {
+		setTimeout(clTablasBotonConsultarMantenerMenu, 100);
+	});
 });

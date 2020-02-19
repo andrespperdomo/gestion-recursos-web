@@ -21,3 +21,6 @@ form.validate input:invalid { border-left: 3px solid; border-left-color: #ffb8b0
 .separador-40 { height: 40px; }
 .separador-50 { height: 50px; }
 .clear { display: block; }
+
+/********** Tablas de Filtro ***********/
+table.dataTable tbody th, table.dataTable tbody td { padding: 2px 8px; }

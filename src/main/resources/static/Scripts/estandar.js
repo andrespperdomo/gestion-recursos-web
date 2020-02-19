@@ -12,7 +12,8 @@ $(function() {
 			.addClass("show").each(function() {
 				var element = $(this);
 				$(".cl-menu").find("a[href='#" + element.attr("id") + "']").addClass("cl-menu-activo");
-			});			
+			});
+	clTablasBotonConsultarMantenerMenu();
 	
 	/**
 	 * Se activa validación de formularios
@@ -26,6 +27,8 @@ $(function() {
 	        }	
 		}
 	});
+	// Mantener el parámetro del menú a través de los formularios
+	clFormMantenerMenu();
 	
 	jQuery.validator.addMethod("notEqual", function (value, element, param) {
 	    return this.optional(element) || value != '0';
@@ -53,4 +56,28 @@ $(function() {
 function obtenerParametroUrl(name){
    if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
       return decodeURIComponent(name[1]);
+}
+
+function clTablasBotonConsultarMantenerMenu() {
+	var clm = obtenerParametroUrl("clm"); // Parámetro estándar para menú activo
+	// Se agrega el parámetro clm a los link "consultar" que se encuentran en las rejillas de resultados
+	if (clm) {
+		$(".cl-tabla tbody tr td:first-child a").each(function() {
+			if ($(this).attr("href").indexOf("clm=") < 0) {
+				$(this).attr("href", $(this).attr("href") + ($(this).attr("href").indexOf("?") >= 0 ? "&" : "?") + "clm=" + clm);
+			}
+		});
+	}
+}
+
+function clFormMantenerMenu() {
+	var clm = obtenerParametroUrl("clm"); // Parámetro estándar para menú activo
+	// Se agrega el parámetro clm a los formularios
+	if (clm) {
+		$("form.validate").each(function() {
+			if ($(this).attr("action").indexOf("clm=") < 0) {
+				$(this).attr("action", $(this).attr("action") + ($(this).attr("action").indexOf("?") >= 0 ? "&" : "?") + "clm=" + clm);
+			}
+		});
+	}
 }

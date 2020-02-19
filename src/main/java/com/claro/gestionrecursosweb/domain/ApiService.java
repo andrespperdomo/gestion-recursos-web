@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.claro.gestionrecursosweb.dto.ProyectoDto;
 import com.claro.gestionrecursosweb.model.RespuestaCustomizada;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,8 +57,8 @@ public class ApiService<Dto, IdDataType> implements ICrudService<Dto, IdDataType
 	@Override
 	public Optional<Dto> findById(IdDataType id, Class<Dto> tipo) {
 		ResponseEntity<RespuestaCustomizada<Dto>> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename + "/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<RespuestaCustomizada<Dto>>() {});
-		Dto dtoRespuesta = new ObjectMapper().convertValue(responseEntity.getBody().getData(), tipo);
-
+		ObjectMapper mapper = new ObjectMapper();
+		Dto dtoRespuesta = mapper.convertValue(responseEntity.getBody().getData(), tipo);
 		if (dtoRespuesta == null)
 			return null;
 		else
@@ -75,8 +76,8 @@ public class ApiService<Dto, IdDataType> implements ICrudService<Dto, IdDataType
 		try {
 			ResponseEntity<RespuestaCustomizada<Iterable<Dto>>> responseEntity = restTemplate.exchange(apiurl + "/" + apiservicename, HttpMethod.GET, null, new ParameterizedTypeReference<RespuestaCustomizada<Iterable<Dto>>>() {});
 			ObjectMapper mapper = new ObjectMapper();
-			Iterable<Dto> mapResult = mapper.convertValue(responseEntity.getBody().getData(), mapper.getTypeFactory().constructCollectionType(ArrayList.class, tipo));
-			return mapResult;
+			Iterable<Dto> dtoRespuesta = mapper.convertValue(responseEntity.getBody().getData(), mapper.getTypeFactory().constructCollectionType(ArrayList.class, tipo));
+			return dtoRespuesta;
 		} catch(Exception e) {
 			// Controlar errores correctamente, obtener errores!
 			System.out.println("*****************************************************" + e.getMessage());

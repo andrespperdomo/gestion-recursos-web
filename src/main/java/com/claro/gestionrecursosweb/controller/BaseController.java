@@ -3,6 +3,8 @@ package com.claro.gestionrecursosweb.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.ui.Model;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -70,8 +72,12 @@ public class BaseController {
 	 * @param tipo Tipo de mensaje: E(Error),S(Exito),W(Advertencia),I(Informativo)
 	 * @param accion Accion de CRUD realizada: C(Crear),R(Consultar),U(Actualizar),D(Eliminar)
 	 */
-	protected String redireccion(String url, String id, String tipo, String accion) {
-		return "redirect:" + url + "/" + id + "?cla=" + tipo + accion;
+	protected String redireccion(String url, String id, String tipo, String accion, HttpServletRequest request) {		
+		String parametrosEstandar = "";
+		if (request.getParameter("clm") != null)
+			parametrosEstandar += "&clm=" + request.getParameter("clm");
+		
+		return "redirect:" + url + "/" + id + "?cla=" + tipo + accion + parametrosEstandar;
 	}
 	
 	/**
