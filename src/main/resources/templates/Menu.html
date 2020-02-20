@@ -15,6 +15,46 @@
 	        	<span class="d-none d-sm-inline">Administración</span>
 	        </a>
 	        <div class="collapse cl-submenu cl-menu-group" id="submenu-admin" aria-expanded="false">
+	        	<a class="nav-link collapsed text-truncate" href="#submenu-admin-presupuesto" data-toggle="collapse" data-target="#submenu-admin-presupuesto">
+	        		<i class="fas fa-file-invoice-dollar"></i> 
+	        		<span>Presupuesto</span>
+	        	</a>
+	        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-presupuesto">
+		            <ul class="flex-column pl-2 nav">
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/Presupuesto/Filtro?clm=apuf">
+		                		<i class="fas fa-search"></i>
+		                		<span>Buscar</span>
+		                	</a>
+		                </li>
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/Presupuesto/Crear?clm=apun">
+		                		<i class="fas fa-plus"></i>
+		                		<span>Nuevo</span>
+		                	</a>
+		                </li>
+		            </ul>
+		        </div>
+	        	<a class="nav-link collapsed text-truncate" href="#submenu-admin-proveedor" data-toggle="collapse" data-target="#submenu-admin-proveedor">
+	        		<i class="fas fa-truck"></i> 
+	        		<span>Proveedores</span>
+	        	</a>
+	        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-proveedor">
+		            <ul class="flex-column pl-2 nav">
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/Proveedor/Filtro?clm=apof">
+		                		<i class="fas fa-search"></i>
+		                		<span>Buscar</span>
+		                	</a>
+		                </li>
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/Proveedor/Crear?clm=apon">
+		                		<i class="fas fa-plus"></i>
+		                		<span>Nuevo</span>
+		                	</a>
+		                </li>
+		            </ul>
+		        </div>
 	        	<a class="nav-link collapsed text-truncate" href="#submenu-admin-proyecto" data-toggle="collapse" data-target="#submenu-admin-proyecto">
 	        		<i class="far fa-folder-open"></i> 
 	        		<span>Proyectos</span>
@@ -34,6 +74,72 @@
 		                	</a>
 		                </li>
 		            </ul>
+		        </div>
+		        <a class="nav-link collapsed text-truncate" href="#submenu-admin-perfiles" data-toggle="collapse" data-target="#submenu-admin-perfiles">
+	        		<i class="far fa-address-book"></i> 
+	        		<span>Perfiles</span>
+	        	</a>
+	        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-perfiles">
+	        		<a class="nav-link collapsed text-truncate" href="#submenu-admin-perfil" data-toggle="collapse" data-target="#submenu-admin-perfil">
+		        		<i class="far fa-address-book"></i>
+		        		<span>Perfil</span>
+		        	</a>
+		        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-perfil">
+			            <ul class="flex-column pl-2 nav">
+			                <li class="nav-item">
+			                	<a class="nav-link py-0" href="/Perfil/Filtro?clm=apepf">
+			                		<i class="fas fa-search"></i>
+			                		<span>Buscar</span>
+			                	</a>
+			                </li>
+			                <li class="nav-item">
+			                	<a class="nav-link py-0" href="/Perfil/Crear?clm=apepn">
+			                		<i class="fas fa-plus"></i>
+			                		<span>Nuevo</span>
+			                	</a>
+			                </li>
+			            </ul>
+			        </div>
+			        <a class="nav-link collapsed text-truncate" href="#submenu-admin-perfiltipo" data-toggle="collapse" data-target="#submenu-admin-perfiltipo">
+		        		<i class="far fa-address-card"></i> 
+		        		<span>Tipo</span>
+		        	</a>
+		        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-perfiltipo">
+			            <ul class="flex-column pl-2 nav">
+			                <li class="nav-item">
+			                	<a class="nav-link py-0" href="/PerfilTipo/Filtro?clm=apetf">
+			                		<i class="fas fa-search"></i>
+			                		<span>Buscar</span>
+			                	</a>
+			                </li>
+			                <li class="nav-item">
+			                	<a class="nav-link py-0" href="/PerfilTipo/Crear?clm=apetn">
+			                		<i class="fas fa-plus"></i>
+			                		<span>Nuevo</span>
+			                	</a>
+			                </li>
+			            </ul>
+			        </div>
+			        <a class="nav-link collapsed text-truncate" href="#submenu-admin-perfilnivel" data-toggle="collapse" data-target="#submenu-admin-perfilnivel">
+		        		<i class="fas fa-layer-group"></i> 
+		        		<span>Nivel</span>
+		        	</a>
+		        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-perfilnivel">
+			            <ul class="flex-column pl-2 nav">
+			                <li class="nav-item">
+			                	<a class="nav-link py-0" href="/PerfilNivel/Filtro?clm=apenf">
+			                		<i class="fas fa-search"></i>
+			                		<span>Buscar</span>
+			                	</a>
+			                </li>
+			                <li class="nav-item">
+			                	<a class="nav-link py-0" href="/PerfilNivel/Crear?clm=apenn">
+			                		<i class="fas fa-plus"></i>
+			                		<span>Nuevo</span>
+			                	</a>
+			                </li>
+			            </ul>
+			        </div>
 		        </div>
 	        	<a class="nav-link collapsed text-truncate" href="#submenu-admin-persona" data-toggle="collapse" data-target="#submenu-admin-persona">
 	        		<i class="fas fa-users"></i> 
@@ -58,10 +164,26 @@
 	        </div>
 	    </li>
 	    <li class="nav-item" sec:authorize="isAuthenticated()">
-	    	<a class="nav-link text-truncate" href="/EmpleadoControl/Filtro?clm=ef">
-	    		<i class="far fa-clock"></i>
+	    	<a class="nav-link collapsed text-truncate" href="#submenu-empleadocontrol" data-toggle="collapse" data-target="#submenu-empleadocontrol">
+        		<i class="far fa-clock"></i>
 	    		<span class="d-none d-sm-inline">Registrar tiempo</span>
-	    	</a>
+        	</a>
+        	<div class="collapse cl-submenu cl-menu-group" id="submenu-empleadocontrol">
+	            <ul class="flex-column pl-2 nav">
+	                <li class="nav-item">
+	                	<a class="nav-link py-0" href="/EmpleadoControl/Filtro?clm=ecf">
+	                		<i class="fas fa-search"></i>
+	                		<span>Buscar</span>
+	                	</a>
+	                </li>
+	                <li class="nav-item">
+	                	<a class="nav-link py-0" href="/EmpleadoControl/Crear?clm=ecn">
+	                		<i class="fas fa-plus"></i>
+	                		<span>Nuevo</span>
+	                	</a>
+	                </li>
+	            </ul>
+	        </div>
 	    </li>
 	</ul>
 </body>

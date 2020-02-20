@@ -20,7 +20,7 @@ $(function() {
 	 */
 	$("form.validate").validate({
 		errorPlacement: function ( error, element ) {	
-	        if(element.parent().hasClass('input-group')){
+	        if(element.parent().hasClass('input-group') || element.hasClass('selectpicker')){
 	          error.insertAfter( element.parent() );
 	        } else {
 	          	error.insertAfter( element );
@@ -44,6 +44,14 @@ $(function() {
 	        format: 'dd/mm/yyyy'
 	    });
 	});
+	$("input.cl-datetime-picker").each(function() {
+		$(this).datetimepicker({
+			locale: 'es-es',
+	        uiLibrary: 'bootstrap4',
+	        format: 'dd/mm/yyyy hh:MM tt',
+	        mode: 'ampm'
+	    });
+	});
 		
 	/**
 	 * Miga de pan
@@ -51,6 +59,11 @@ $(function() {
 	$(".cl-menu a.cl-menu-activo").each(function() {
 		$("ol.breadcrumb").append('<li class="breadcrumb-item">' + $(this).find("span").text() + '</li>');
 	});
+	
+	
+	/* "Autocomplete" */
+	$.fn.selectpicker.Constructor.BootstrapVersion = '4';
+
 });
 
 function obtenerParametroUrl(name){
