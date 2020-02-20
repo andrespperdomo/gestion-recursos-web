@@ -4,9 +4,11 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class LineaProductoDto {
 	
-	private int id;
+	private Integer id;
 
 	private Date fechacreacion;
 
@@ -17,31 +19,31 @@ public class LineaProductoDto {
 	public String incorrectData;
 	
 	SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+	@JsonIgnore
+	public String fechaCreacionString=format.format(new Date());
+	@JsonIgnore
+	public String fechaModificacionString=format.format(new Date());
+	
+	
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	public Date getFechacreacion() {
 		return fechacreacion;
 	}
-	public String getFechaCreacionString() {
-		return format.format(fechacreacion);
-	}
-
+	
 	public void setFechacreacion(Date fechacreacion) {
 		this.fechacreacion = fechacreacion;
 	}
 
 	public Date getFechamodificacion() {
 		return fechamodificacion;
-	}
-	public String getFechaModificacionString() {
-		return format.format(fechamodificacion);
 	}
 
 	public void setFechamodificacion(Date fechamodificacion) {
@@ -54,6 +56,14 @@ public class LineaProductoDto {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	@Override
+	public String toString() {
+		return "LineaProductoDto [id=" + id + ", fechacreacion=" + fechacreacion + ", fechamodificacion="
+				+ fechamodificacion + ", nombre=" + nombre + ", incorrectData=" + incorrectData + ", format=" + format
+				+ ", fechaCreacionString=" + fechaCreacionString + ", fechaModificacionString="
+				+ fechaModificacionString + "]";
 	}
 
 	
