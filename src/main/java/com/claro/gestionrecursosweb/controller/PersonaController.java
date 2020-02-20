@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.claro.gestionrecursosweb.domain.ApiService;
 import com.claro.gestionrecursosweb.dto.PersonaDto;
+import com.claro.gestionrecursosweb.dto.TipoDocumentoDto;
 
 @Controller
 @RequestMapping("/Persona")
@@ -24,21 +25,25 @@ public class PersonaController extends BaseController {
 
 	@Value("${claro.dominio.persona.nombre}")
 	private String dominio;
+	@Value("${claro.dominio.tipodocumento.nombre}")
+	private String dominio_tipodocumento;
 	
 	@Autowired
 	private ApiService<PersonaDto, Integer> service;
+	@Autowired
+	private ApiService<TipoDocumentoDto, Integer> serviceTipoDocumento;
 		
 	public void ConfigurarService() {
 		service.setapiservicename(dominio);
 	}
 	
 	@GetMapping("/Filtro")
-	public String Filtro(Model model) {
+	public String Filtro(Model modelo) {
 		ConfigurarService();
 		
 		Iterable<PersonaDto> dto = service.findAll(PersonaDto.class);
 		
-		model.addAttribute("modelo", dto);
+		modelo.addAttribute("modelo", dto);
 		return dominio + "/Filtro";
 	}
 	
@@ -48,6 +53,7 @@ public class PersonaController extends BaseController {
 		modelo.addAttribute("cl_formaction", "Crear");
 		
 		modelo.addAttribute("modelo", new PersonaDto());
+		cargarListas(modelo);
 		return dominio + "/Persona";
 	}
 	
@@ -68,10 +74,12 @@ public class PersonaController extends BaseController {
 		modelo.addAttribute("cl_formaction", "Editar");
 		
 		Optional<PersonaDto> dtoResultado = service.findById(id, PersonaDto.class);
+		
 		if (dtoResultado == null)
 			dtoResultado = Optional.of(new PersonaDto());
 				
 		modelo.addAttribute("modelo", dtoResultado.get());
+		cargarListas(modelo);
 		return dominio + "/Persona";
 	}
 	
@@ -85,7 +93,15 @@ public class PersonaController extends BaseController {
 		mostrarMensajes(modelo, "S", "U");
 		
 		modelo.addAttribute("modelo", dtoResultado);
+		cargarListas(modelo);
 		return dominio + "/Persona";
+	}
+	
+	private void cargarListas(Model modelo) {
+		serviceTipoDocumento.setapiservicename(dominio_tipodocumento);
+		Iterable<TipoDocumentoDto> tiposDocumento = serviceTipoDocumento.findAll(TipoDocumentoDto.class);
+		
+		modelo.addAttribute("tipodocumentos", tiposDocumento);	
 	}
 	
 }

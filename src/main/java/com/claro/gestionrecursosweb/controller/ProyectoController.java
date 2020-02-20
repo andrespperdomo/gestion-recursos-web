@@ -67,9 +67,9 @@ public class ProyectoController extends BaseController {
 		configurarService();
 		modelo.addAttribute("cl_formaction", "Crear");
 		
-		//ProyectoDto dtoResultado = service.insert(dto, ProyectoDto.class);
+		ProyectoDto dtoResultado = service.insert(dto, ProyectoDto.class);
 		
-		return redireccion("Editar", /*dtoResultado.getId().toString()*/"100", "S", "C", request);
+		return redireccion("Editar", dtoResultado.getId().toString(), "S", "C", request);
 	}
 	
 	@GetMapping("/Editar/{id}")
