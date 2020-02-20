@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Layout}">
+<head>
+<title>Tareas</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		
+			<div th:insert="MensajesFormulario.html :: mensajes_formulario">
+			</div>
+			
+			<div class="col-md-6">
+	    		<div class="form-group">
+	    			<label>Proyecto</label>
+	    			<select class="form-control selectpicker" data-live-search="true" required data-rule-min="1" data-msg-min="Debe seleccionar una opción">
+	    				<option value="0">Seleccione...</option>
+	    				<option th:each="item : ${proyectos}" th:value="${item.id}" th:text="${item.nombre}"></option>
+	   				</select>
+	    		</div>
+	    	</div>
+	    	<div class="separador-10"></div>
+	    	
+	    <div class="row">
+	    	<div class="col-md-4">
+	    		<div class="card">
+				 	<div class="card-body">
+				    	<h5 class="card-title">Card title</h5>
+				    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    	<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+	    	</div>	    
+	    	<div class="col-md-4">
+	    		<div class="card">
+				 	<div class="card-body">
+				    	<h5 class="card-title">Card title</h5>
+				    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    	<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+	    	</div>
+	    	<div class="col-md-4">
+	    		<div class="card">
+				 	<div class="card-body">
+				    	<h5 class="card-title">Card title</h5>
+				    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    	<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+	    	</div>
+    	</div>
+    	<div class="separador-10"></div>
+    	<div class="row">
+	    	<div class="col-md-4">
+	    		<div class="card">
+				 	<div class="card-body">
+				    	<h5 class="card-title">Card title</h5>
+				    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    	<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+	    	</div>	    
+	    	<div class="col-md-4">
+	    		<div class="card">
+				 	<div class="card-body">
+				    	<h5 class="card-title">Card title</h5>
+				    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    	<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+	    	</div>
+	    	<div class="col-md-4">
+	    		<div class="card">
+				 	<div class="card-body">
+				    	<h5 class="card-title">Card title</h5>
+				    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    	<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+	    	</div>
+    	</div>
+    	<div class="separador-10"></div>
+    	<div class="row">
+	    	<div class="col-md-4">
+	    		<div class="card">
+				 	<div class="card-body">
+				    	<h5 class="card-title">Card title</h5>
+				    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    	<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+	    	</div>	    
+	    	<div class="col-md-4">
+	    		<div class="card">
+				 	<div class="card-body">
+				    	<h5 class="card-title">Card title</h5>
+				    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    	<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+	    	</div>
+	    	<div class="col-md-4">
+	    		<div class="card">
+				 	<div class="card-body">
+				    	<h5 class="card-title">Card title</h5>
+				    	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    	<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+	    	</div>
+    	</div>
+	</div>
+</body>
+</html>
