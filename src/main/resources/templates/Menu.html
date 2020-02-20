@@ -55,6 +55,26 @@
 		                </li>
 		            </ul>
 		        </div>
+		        	<a class="nav-link collapsed text-truncate" href="#submenu-admin-persona" data-toggle="collapse" data-target="#submenu-admin-persona">
+	        		<i class="fas fa-users"></i> 
+	        		<span>Linea producto</span>
+	        	</a>
+	        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-persona">
+		            <ul class="flex-column pl-2 nav">
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/LineaProducto/filtro?clm=apf">
+		                		<i class="fas fa-search"></i>
+		                		<span>Buscar</span>
+		                	</a>
+		                </li>
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/Persona/Crear?clm=apn">
+		                		<i class="fas fa-plus"></i>
+		                		<span>Nuevo</span>
+		                	</a>
+		                </li>
+		            </ul>
+		        </div>
 	        </div>
 	    </li>
 	    <li class="nav-item" sec:authorize="isAuthenticated()">
