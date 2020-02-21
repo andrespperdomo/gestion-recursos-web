@@ -43,12 +43,12 @@ public class ProyectoController extends BaseController {
 	}
 	
 	@GetMapping("/Filtro")
-	public String filtro(Model model) {
+	public String filtro(Model modelo) {
 		configurarService();
 		
 		Iterable<ProyectoDto> dto = service.findAll(ProyectoDto.class);
 		
-		model.addAttribute("modelo", dto);
+		modelo.addAttribute("modelo", dto);
 		return dominio + "/Filtro";
 	}
 	

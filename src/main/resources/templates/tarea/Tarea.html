@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Layout}">
+<head>
+<title>Tareas</title>
+</head>
+<body>
+	<th:block layout:fragment="estilos">
+		<link href="/Estilos/tarea.css" rel="stylesheet"></script>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script type="text/javascript" src="/Scripts/tarea.js"></script>
+	</th:block>
+	
+	<div layout:fragment="content">		
+		<div class="row">
+			<div th:insert="MensajesFormulario.html :: mensajes_formulario">
+			</div>
+			
+			<div class="col-md-6">
+	    		<div class="form-group">
+	    			<label>Proyecto</label>
+	    			<select class="form-control selectpicker cl-tarea-ddl-proyecto" data-live-search="true" required data-rule-min="1" data-msg-min="Debe seleccionar una opción">
+	    				<option value="0">Seleccione...</option>
+	    				<option th:each="item : ${proyectos}" th:value="${item.id}" th:text="${item.nombre}"></option>
+	   				</select>
+	    		</div>
+	    	</div>
+	    </div>
+	    <div class="separador-10"></div>
+	    <div class="row">
+	    	<div class="col-md-4">
+	    		<div th:insert="tarea/_Tarea.html :: tarea_plantilla">
+	    		</div>
+	    	</div>
+    	</div>
+	</div>
+</body>
+</html>
