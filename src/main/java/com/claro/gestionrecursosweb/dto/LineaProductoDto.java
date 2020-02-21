@@ -18,11 +18,11 @@ public class LineaProductoDto {
 	
 	public String incorrectData;
 	
-	SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+	SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
 	@JsonIgnore
-	public String fechaCreacionString=format.format(new Date());
+	public String fechaCreacionString;
 	@JsonIgnore
-	public String fechaModificacionString=format.format(new Date());
+	public String fechaModificacionString;
 	
 	
 
@@ -49,6 +49,12 @@ public class LineaProductoDto {
 	public void setFechamodificacion(Date fechamodificacion) {
 		this.fechamodificacion = fechamodificacion;
 	}
+	public String getFechaCreacionString() {
+		return simpleDateFormat.format(fechacreacion);
+	}
+	public String getFechaModificacionString() {
+		return simpleDateFormat.format(fechamodificacion);
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -61,12 +67,9 @@ public class LineaProductoDto {
 	@Override
 	public String toString() {
 		return "LineaProductoDto [id=" + id + ", fechacreacion=" + fechacreacion + ", fechamodificacion="
-				+ fechamodificacion + ", nombre=" + nombre + ", incorrectData=" + incorrectData + ", format=" + format
-				+ ", fechaCreacionString=" + fechaCreacionString + ", fechaModificacionString="
+				+ fechamodificacion + ", nombre=" + nombre + ", incorrectData=" + incorrectData + ", simpleDateFormat="
+				+ simpleDateFormat + ", fechaCreacionString=" + fechaCreacionString + ", fechaModificacionString="
 				+ fechaModificacionString + "]";
 	}
-
-	
-	
 	
 }
