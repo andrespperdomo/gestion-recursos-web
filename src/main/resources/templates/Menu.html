@@ -158,20 +158,46 @@
 	        		<span>Personas</span>
 	        	</a>
 	        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-persona">
-		            <ul class="flex-column pl-2 nav">
-		                <li class="nav-item">
-		                	<a class="nav-link py-0" href="/Persona/Filtro?clm=adpsfi">
-		                		<i class="fas fa-search"></i>
-		                		<span>Buscar</span>
-		                	</a>
-		                </li>
-		                <li class="nav-item">
-		                	<a class="nav-link py-0" href="/Persona/Crear?clm=adpsnu">
-		                		<i class="fas fa-plus"></i>
-		                		<span>Nuevo</span>
-		                	</a>
-		                </li>
-		            </ul>
+	        		<a class="nav-link collapsed text-truncate" href="#submenu-persona-datosbasicos" data-toggle="collapse" data-target="#submenu-persona-datosbasicos">
+		        		<i class="far fa-id-card"></i>
+		        		<span>Datos básicos</span>
+		        	</a>
+		        	<div class="collapse cl-submenu cl-menu-group" id="submenu-persona-datosbasicos">
+			            <ul class="flex-column pl-2 nav">
+			                <li class="nav-item">
+			                	<a class="nav-link py-0" href="/Persona/Filtro?clm=adpsdbfi">
+			                		<i class="fas fa-search"></i>
+			                		<span>Buscar</span>
+			                	</a>
+			                </li>
+			                <li class="nav-item">
+			                	<a class="nav-link py-0" href="/Persona/Crear?clm=adpsdbnu">
+			                		<i class="fas fa-plus"></i>
+			                		<span>Nuevo</span>
+			                	</a>
+			                </li>
+			            </ul>
+			        </div>
+			        <a class="nav-link collapsed text-truncate" href="#submenu-persona-vinculacion" data-toggle="collapse" data-target="#submenu-persona-vinculacion">
+		        		<i class="far fa-file-alt"></i>
+		        		<span>Vinculación</span>
+		        	</a>
+		        	<div class="collapse cl-submenu cl-menu-group" id="submenu-persona-vinculacion">
+			            <ul class="flex-column pl-2 nav">
+			                <li class="nav-item">
+			                	<a class="nav-link py-0" href="/PerfilTipo/Filtro?clm=adpevifi">
+			                		<i class="fas fa-search"></i>
+			                		<span>Buscar</span>
+			                	</a>
+			                </li>
+			                <li class="nav-item">
+			                	<a class="nav-link py-0" href="/PerfilTipo/Crear?clm=papevinu">
+			                		<i class="fas fa-plus"></i>
+			                		<span>Nuevo</span>
+			                	</a>
+			                </li>
+			            </ul>
+			        </div>
 		        </div>
 	        </div>
 	    </li>

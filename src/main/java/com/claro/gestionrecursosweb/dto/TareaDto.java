@@ -10,6 +10,7 @@ public class TareaDto {
 	private Integer codtareaestado;
 	private Integer codempleadocreo;
 	private Integer codempleadoasignado;
+	private Integer codproyecto;
 	private String jerarquia;
 	private String nombre;
 	private Integer nivel;
@@ -56,6 +57,12 @@ public class TareaDto {
 	}
 	public void setCodempleadoasignado(Integer codempleadoasignado) {
 		this.codempleadoasignado = codempleadoasignado;
+	}
+	public Integer getCodproyecto() {
+		return codproyecto;
+	}
+	public void setCodproyecto(Integer codproyecto) {
+		this.codproyecto = codproyecto;
 	}
 	public String getJerarquia() {
 		return jerarquia;

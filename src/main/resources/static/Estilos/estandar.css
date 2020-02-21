@@ -4,8 +4,8 @@ form.validate input.error, form.validate select.error { border-color: #ffb8b0; b
 form.validate label.error { color: #bf4545; }
 form.validate input.form-control:focus { box-shadow: none; }
 form.validate input.form-control, form.validate select.form-control { box-shadow: none; transition: border-color .5s ease-out; }
-form.validate input:required:valid {border-left: 3px solid; border-left-color: green; }
-form.validate input:invalid { border-left: 3px solid; border-left-color: #ffb8b0; }
+form.validate input:required:valid, form.validate select:required:valid {border-left: 3px solid; border-left-color: green; }
+form.validate input:invalid, form.validate select:invalid { border-left: 3px solid; border-left-color: #ffb8b0; }
 
 
 /********** Menú **********/

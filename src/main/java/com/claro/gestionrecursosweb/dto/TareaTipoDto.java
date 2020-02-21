@@ -8,6 +8,7 @@ public class TareaTipoDto {
 	private String nombre;
 	private String descripcion;
 	private Integer jerarquia;
+	private String color;
 	private Date fechacreacion;
 	private Date fechamodificacion;
 	
@@ -34,6 +35,12 @@ public class TareaTipoDto {
 	}
 	public void setJerarquia(Integer jerarquia) {
 		this.jerarquia = jerarquia;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
 	}
 	public Date getFechacreacion() {
 		return fechacreacion;
