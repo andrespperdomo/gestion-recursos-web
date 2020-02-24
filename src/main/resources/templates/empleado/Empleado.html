@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Layout}">
+	<head>
+		<title>Empleado</title>
+	</head>
+	<body>
+		<th:block layout:fragment="scripts">
+			<script type="text/javascript" src="/Scripts/empleado.js"></script>
+		</th:block>
+	
+		<div layout:fragment="content">
+		
+			<div th:insert="MensajesFormulario.html :: mensajes_formulario"> </div>
+		
+		    <form class="cl-form-persona validate" action="" th:attr="action='/Empleado/'+${cl_formaction}" th:object="${modelo}" method="post" >
+		    	<div class="row">
+			    	<input type="hidden" th:field="*{id}" />
+			    	<input type="hidden" th:field="*{codempleado}"/>
+			    	<input type="hidden" th:field="*{codpersona}"/>
+			    	<input type="hidden" th:field="*{codtipodocumento}"/>
+			    	<input type="hidden" th:field="*{tipodocumento}"/>
+			   		<input type="hidden" th:field="*{genero}"/>
+			   		<input type="hidden" th:field="*{generonombre}"/>
+			    	
+			    	<div class="col-md-6">
+			    		<div class="form-group">
+			    			<label>Persona</label>
+			    			<select class="form-control selectpicker ddl-persona" data-live-search="true" required th:field="*{codperfil}" data-rule-min="1" data-msg-min="Debe seleccionar una opción">
+			    				<option value="0">Seleccione...</option>
+			    				<option th:each="item : ${personas}" th:value="${item.id}" th:text="${item.numerodocumento} + ' - ' + ${item.nombre1} + ' ' + ${item.apellido1}"></option>
+		    				</select>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Tipo documento</label>
+			    			<select class="form-control" disabled name="codtipodocumento">
+				    			<option value="0">Seleccione...</option>
+			    				<option th:each="item : ${tiposdocumento}" th:value="${item.id}" th:text="${item.nombre}"></option>
+			    			</select>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Número <span class="d-md-none d-xl-inline">de</span> documento</label>
+			    			<input type="text" class="form-control" th:field="*{numerodocumento}" readonly />
+			    		</div>
+			    	</div>
+			    	<div class="col-md-6">
+			    		<div class="form-group">
+			    			<label>Nombre</label>
+			    			<input type="text" class="form-control" th:field="*{nombre}" readonly />
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Teléfono</label>
+			    			<input type="text" class="form-control" th:field="*{telefono}" readonly />
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Correo electrónico</label>
+			    			<input type="email" class="form-control" th:field="*{correo}" readonly />
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Género</label>
+			    			<select class="form-control" th:field="*{genero}" disabled>
+			    				<option value="F">Femenino</option>
+			    				<option value="M">Masculino</option>
+			    			</select>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Fecha nacimiento</label>
+			    			<input type="text" class="form-control" th:name="fechanacimiento" autocomplete="off" th:value="${modelo.fechanacimiento}?${#dates.format(modelo.fechanacimiento, 'dd/MM/yyyy')}:''" readonly />
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Perfil</label>
+			    			<select class="form-control selectpicker" data-live-search="true" required th:field="*{codperfil}" data-rule-min="1" data-msg-min="Debe seleccionar una opción">
+			    				<option value="0">Seleccione...</option>
+			    				<option th:each="item : ${perfiles}" th:value="${item.id}" th:text="${item.nombre}"></option>
+		    				</select>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Perfil tipo</label>
+			    			<select class="form-control selectpicker" data-live-search="true" required th:field="*{codperfiltipo}" data-rule-min="1" data-msg-min="Debe seleccionar una opción">
+			    				<option value="0">Seleccione...</option>
+			    				<option th:each="item : ${perfiltipos}" th:value="${item.id}" th:text="${item.nombre}"></option>
+		    				</select>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Perfil nivel</label>
+			    			<select class="form-control selectpicker" data-live-search="true" required th:field="*{codperfilnivel}" data-rule-min="1" data-msg-min="Debe seleccionar una opción">
+			    				<option value="0">Seleccione...</option>
+			    				<option th:each="item : ${perfilniveles}" th:value="${item.id}" th:text="${item.nombre}"></option>
+		    				</select>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Línea producto</label>
+			    			<select class="form-control selectpicker" data-live-search="true" required th:field="*{codlineaproducto}" data-rule-min="1" data-msg-min="Debe seleccionar una opción">
+			    				<option value="0">Seleccione...</option>
+			    				<option th:each="item : ${lineasproducto}" th:value="${item.id}" th:text="${item.nombre}"></option>
+		    				</select>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Proveedor</label>
+			    			<select class="form-control selectpicker" data-live-search="true" required th:field="*{codproveedor}" data-rule-min="1" data-msg-min="Debe seleccionar una opción">
+			    				<option value="0">Seleccione...</option>
+			    				<option th:each="item : ${proveedores}" th:value="${item.id}" th:text="${item.nombre}"></option>
+		    				</select>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Usuario claro</label>
+			    			<input type="text" class="form-control" th:field="*{usuarioclaro}" maxlength="20"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Fecha inicio</label>
+			    			<input type="text" required class="form-control cl-date-picker" th:id="fechainicio" th:name="fechainicio" autocomplete="off" th:value="${modelo.fechainicio}?${#dates.format(modelo.fechainicio, 'dd/MM/yyyy')}:''" maxlength="10"/>
+			    		</div>
+			    	</div>
+			    	<div class="col-md-3">
+			    		<div class="form-group">
+			    			<label>Fecha fin</label>
+			    			<input type="text" class="form-control cl-date-picker" th:id="fechafin" th:name="fechafin" autocomplete="off" th:value="${modelo.fechafin}?${#dates.format(modelo.fechafin, 'dd/MM/yyyy')}:''" maxlength="10"/>
+			    		</div>
+			    	</div>
+			    	
+			    	<div class="col-12">
+			    		<div class="form-group text-center">
+			    			<div class="separador-30"></div>
+			    			<input type="submit" class="btn btn-info" value="Guardar"/>
+			    		</div>
+			    	</div>
+		    	</div>
+		    </form>
+		</div>
+		
+		
+		
+	</body>
+</html>

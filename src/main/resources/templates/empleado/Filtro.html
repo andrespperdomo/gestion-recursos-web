@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html layout:decorate="~{Layout}">
+	<head>
+		<title>Empleados</title>
+	</head>
+	<body>	
+		<th:block layout:fragment="estilos">
+			<link href="/Complementos/DataTables/datatables.min.css" rel="stylesheet"/>
+		</th:block>
+		<th:block layout:fragment="scripts">
+			<script type="text/javascript" src="/Complementos/DataTables/datatables.min.js" rel="stylesheet"></script>
+			<script type="text/javascript" src="/Scripts/cl-tablas.js"></script>
+		</th:block>
+		
+		
+		<div layout:fragment="content">
+			<div class="table-responsive">
+			    <table class="table table-striped table-sm table-bordered table-hover cl-tabla">
+				    <thead class="thead-light text-center">
+				        <tr>
+				        	<th>Ver</th>
+				        	<th>Proveedor</th>
+				        	<th>No. documento</th>
+				            <th>Nombre</th>
+				            <th>Perfil</th>
+				            <th>Tipo</th>
+				            <th>Nivel</th>
+				            <th>Línea producto</th>
+				            <th>Fecha inicio</th>
+				            <th>Fecha fin</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <tr th:each="item : ${modelo}">
+				        	<td>
+				        		<a href="#" th:attr="href='/Empleado/Editar/'+${item.codempleado}" class="">Consultar</a>
+				        	</td>
+				        	<td><span th:text="${item.proveedor}"></span></td>
+				            <td>
+				            	<span th:text="${item.numerodocumento}"></span>
+				            </td>
+				            <td><span th:text="${item.nombre}"></span></td>
+				            <td><span th:text="${item.perfil}"></span></td>
+				            <td><span th:text="${item.perfiltipo}"></span></td>
+				            <td><span th:text="${item.perfilnivel}"></span></td>
+				            <td><span th:text="${item.lineaproducto}"></span></td>
+				            <td><span th:text="${item.fechainicio}"></span></td>
+				            <td><span th:text="${item.fechafin}"></span></td>
+				        </tr>
+				    </tbody>
+				</table>    
+			</div>
+		</div>
+	</body>
+</html>

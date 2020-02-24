@@ -5,7 +5,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,11 +21,6 @@ import com.claro.gestionrecursosweb.dto.TipoDocumentoDto;
 @Controller
 @RequestMapping("/Persona")
 public class PersonaController extends BaseController {
-
-	@Value("${claro.dominio.persona.nombre}")
-	private String dominio;
-	@Value("${claro.dominio.tipodocumento.nombre}")
-	private String dominio_tipodocumento;
 	
 	@Autowired
 	private ApiService<PersonaDto, Integer> service;
@@ -34,7 +28,7 @@ public class PersonaController extends BaseController {
 	private ApiService<TipoDocumentoDto, Integer> serviceTipoDocumento;
 		
 	public void ConfigurarService() {
-		service.setapiservicename(dominio);
+		service.setapiservicename(dominio_persona);
 	}
 	
 	@GetMapping("/Filtro")
@@ -44,7 +38,7 @@ public class PersonaController extends BaseController {
 		Iterable<PersonaDto> dto = service.findAll(PersonaDto.class);
 		
 		modelo.addAttribute("modelo", dto);
-		return dominio + "/Filtro";
+		return dominio_persona + "/Filtro";
 	}
 	
 	@GetMapping("Crear")
@@ -54,7 +48,7 @@ public class PersonaController extends BaseController {
 		
 		modelo.addAttribute("modelo", new PersonaDto());
 		cargarListas(modelo);
-		return dominio + "/Persona";
+		return dominio_persona + "/Persona";
 	}
 	
 	@PostMapping("/Crear")
@@ -80,7 +74,7 @@ public class PersonaController extends BaseController {
 				
 		modelo.addAttribute("modelo", dtoResultado.get());
 		cargarListas(modelo);
-		return dominio + "/Persona";
+		return dominio_persona + "/Persona";
 	}
 	
 	@PostMapping("/Editar")
@@ -94,7 +88,7 @@ public class PersonaController extends BaseController {
 		
 		modelo.addAttribute("modelo", dtoResultado);
 		cargarListas(modelo);
-		return dominio + "/Persona";
+		return dominio_persona + "/Persona";
 	}
 	
 	private void cargarListas(Model modelo) {

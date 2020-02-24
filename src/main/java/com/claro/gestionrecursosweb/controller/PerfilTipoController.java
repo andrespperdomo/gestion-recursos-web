@@ -5,7 +5,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,14 +21,11 @@ import com.claro.gestionrecursosweb.dto.PerfiltipoDto;
 @RequestMapping("/PerfilTipo")
 public class PerfilTipoController extends BaseController {
 	
-	@Value("${claro.dominio.perfiltipo.nombre}")
-	private String dominio;
-	
 	@Autowired
 	private ApiService<PerfiltipoDto, Integer> service;
 		
 	public void configurarService() {
-		service.setapiservicename(dominio);
+		service.setapiservicename(dominio_perfiltipo);
 	}
 	
 	@GetMapping("/Filtro")
@@ -39,7 +35,7 @@ public class PerfilTipoController extends BaseController {
 		Iterable<PerfiltipoDto> dto = service.findAll(PerfiltipoDto.class);
 		
 		model.addAttribute("modelo", dto);
-		return dominio + "/Filtro";
+		return dominio_perfiltipo + "/Filtro";
 	}
 	
 	@GetMapping("Crear")
@@ -49,7 +45,7 @@ public class PerfilTipoController extends BaseController {
 		
 		modelo.addAttribute("modelo", new PerfiltipoDto());
 		cargarListas(modelo);
-		return dominio + "/PerfilTipo";
+		return dominio_perfiltipo + "/PerfilTipo";
 	}
 	
 	@PostMapping("/Crear")
@@ -74,7 +70,7 @@ public class PerfilTipoController extends BaseController {
 				
 		modelo.addAttribute("modelo", dtoResultado.get());
 		cargarListas(modelo);
-		return dominio + "/PerfilTipo";
+		return dominio_perfiltipo + "/PerfilTipo";
 	}
 	
 	@PostMapping("/Editar")
@@ -87,7 +83,7 @@ public class PerfilTipoController extends BaseController {
 		
 		mostrarMensajes(modelo, "S", "U");
 		cargarListas(modelo);
-		return dominio + "/PerfilTipo";
+		return dominio_perfiltipo + "/PerfilTipo";
 	}
 	
 	private void cargarListas(Model modelo) {

@@ -1,7 +1,6 @@
 package com.claro.gestionrecursosweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +17,6 @@ import com.claro.gestionrecursosweb.dto.TareaTipoDto;
 @Controller
 @RequestMapping("/Tareas")
 public class TareaController extends BaseController {
-		
-	@Value("${claro.dominio.tarea.nombre}")
-	private String dominio;
-	@Value("${claro.dominio.proyecto.nombre}")
-	private String dominio_proyecto;
-	@Value("${claro.dominio.tareatipo.nombre}")
-	private String dominio_tareatipo;
-	@Value("${claro.dominio.persona.nombre}")
-	private String dominio_persona;
 	
 	@Autowired
 	private ApiService<ProyectoDto, Integer> serviceProyecto;
@@ -44,7 +34,7 @@ public class TareaController extends BaseController {
 		modelo.addAttribute("proyectos", proyectos);
 		modelo.addAttribute("modelotarea", new TareaDto());
 		cargarListas(modelo);
-		return dominio + "/Tarea";
+		return dominio_tarea + "/Tarea";
 	}
 	
 	@PostMapping
@@ -54,7 +44,7 @@ public class TareaController extends BaseController {
 		//dto = service.insert(dto, TareaDto.class);
 		
 		
-		return dominio + "/Tarea";
+		return dominio_tarea + "/Tarea";
 	}
 	
 	private void cargarListas(Model modelo) {

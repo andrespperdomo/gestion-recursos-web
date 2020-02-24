@@ -5,7 +5,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,14 +21,11 @@ import com.claro.gestionrecursosweb.dto.PresupuestoDto;
 @RequestMapping("/Presupuesto")
 public class PresupuestoController extends BaseController {
 	
-	@Value("${claro.dominio.presupuesto.nombre}")
-	private String dominio;
-	
 	@Autowired
 	private ApiService<PresupuestoDto, Integer> service;
 		
 	public void configurarService() {
-		service.setapiservicename(dominio);
+		service.setapiservicename(dominio_presupuesto);
 	}
 	
 	@GetMapping("/Filtro")
@@ -39,7 +35,7 @@ public class PresupuestoController extends BaseController {
 		Iterable<PresupuestoDto> dto = service.findAll(PresupuestoDto.class);
 		
 		model.addAttribute("modelo", dto);
-		return dominio + "/Filtro";
+		return dominio_presupuesto + "/Filtro";
 	}
 	
 	@GetMapping("Crear")
@@ -49,7 +45,7 @@ public class PresupuestoController extends BaseController {
 		
 		modelo.addAttribute("modelo", new PresupuestoDto());
 		cargarListas(modelo);
-		return dominio + "/Presupuesto";
+		return dominio_presupuesto + "/Presupuesto";
 	}
 	
 	@PostMapping("/Crear")
@@ -74,7 +70,7 @@ public class PresupuestoController extends BaseController {
 				
 		modelo.addAttribute("modelo", dtoResultado.get());
 		cargarListas(modelo);
-		return dominio + "/Presupuesto";
+		return dominio_presupuesto + "/Presupuesto";
 	}
 	
 	@PostMapping("/Editar")
@@ -87,7 +83,7 @@ public class PresupuestoController extends BaseController {
 		
 		mostrarMensajes(modelo, "S", "U");
 		cargarListas(modelo);
-		return dominio + "/Presupuesto";
+		return dominio_presupuesto + "/Presupuesto";
 	}
 	
 	private void cargarListas(Model modelo) {

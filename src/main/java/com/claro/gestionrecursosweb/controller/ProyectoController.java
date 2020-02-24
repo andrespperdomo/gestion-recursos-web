@@ -5,7 +5,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,14 +22,7 @@ import com.claro.gestionrecursosweb.dto.ProyectoTipoDto;
 @Controller
 @RequestMapping("/Proyecto")
 public class ProyectoController extends BaseController {
-	
-	@Value("${claro.dominio.proyecto.nombre}")
-	private String dominio;
-	@Value("${claro.dominio.presupuesto.nombre}")
-	private String dominio_presupuesto;
-	@Value("${claro.dominio.proyectotipo.nombre}")
-	private String dominio_proyectotipo;
-	
+		
 	@Autowired
 	private ApiService<ProyectoDto, Integer> service;
 	@Autowired
@@ -39,7 +31,7 @@ public class ProyectoController extends BaseController {
 	private ApiService<ProyectoTipoDto, Integer> serviceProyectoTipo;
 		
 	public void configurarService() {
-		service.setapiservicename(dominio);
+		service.setapiservicename(dominio_proyecto);
 	}
 	
 	@GetMapping("/Filtro")
@@ -49,7 +41,7 @@ public class ProyectoController extends BaseController {
 		Iterable<ProyectoDto> dto = service.findAll(ProyectoDto.class);
 		
 		modelo.addAttribute("modelo", dto);
-		return dominio + "/Filtro";
+		return dominio_proyecto + "/Filtro";
 	}
 	
 	@GetMapping("Crear")
@@ -59,7 +51,7 @@ public class ProyectoController extends BaseController {
 		
 		modelo.addAttribute("modelo", new ProyectoDto());
 		cargarListas(modelo);
-		return dominio + "/Proyecto";
+		return dominio_proyecto + "/Proyecto";
 	}
 	
 	@PostMapping("/Crear")
@@ -84,7 +76,7 @@ public class ProyectoController extends BaseController {
 				
 		modelo.addAttribute("modelo", dtoResultado.get());
 		cargarListas(modelo);
-		return dominio + "/Proyecto";
+		return dominio_proyecto + "/Proyecto";
 	}
 	
 	@PostMapping("/Editar")
@@ -97,7 +89,7 @@ public class ProyectoController extends BaseController {
 		
 		mostrarMensajes(modelo, "S", "U");
 		cargarListas(modelo);
-		return dominio + "/Proyecto";
+		return dominio_proyecto + "/Proyecto";
 	}
 	
 	private void cargarListas(Model modelo) {
