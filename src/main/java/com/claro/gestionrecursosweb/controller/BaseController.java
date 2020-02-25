@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -14,35 +13,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 @Controller
 public class BaseController {
-	
-	@Value("${claro.dominio.persona.nombre}")
-	protected String dominio_persona;
-	@Value("${claro.dominio.tipodocumento.nombre}")
-	protected String dominio_tipodocumento;
-	@Value("${claro.dominio.empleado.nombre}")
-	protected String dominio_empleado;
-	@Value("${claro.dominio.perfil.nombre}")
-	protected String dominio_perfil;
-	@Value("${claro.dominio.perfiltipo.nombre}")
-	protected String dominio_perfiltipo;
-	@Value("${claro.dominio.perfilnivel.nombre}")
-	protected String dominio_perfilnivel;
-	@Value("${claro.dominio.lineasproducto.nombre}")
-	protected String dominio_lineasproducto;
-	@Value("${claro.dominio.proveedor.nombre}")
-	protected String dominio_proveedor;
-	@Value("${claro.dominio.empleadocontrol.nombre}")
-	protected String dominio_empleadocontrol;
-	@Value("${claro.dominio.proyecto.nombre}")
-	protected String dominio_proyecto;
-	@Value("${claro.dominio.proyectotipo.nombre}")
-	protected String dominio_proyectotipo;
-	@Value("${claro.dominio.presupuesto.nombre}")
-	protected String dominio_presupuesto;
-	@Value("${claro.dominio.tarea.nombre}")
-	protected String dominio_tarea;
-	@Value("${claro.dominio.tareatipo.nombre}")
-	protected String dominio_tareatipo;
 
 	/**
 	 * Método para presentación de mensajes estándar

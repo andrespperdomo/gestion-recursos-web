@@ -1,5 +1,6 @@
 package com.claro.gestionrecursosweb.controller;
 
+import java.util.Date;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,49 +17,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.claro.gestionrecursosweb.domain.ApiService;
-import com.claro.gestionrecursosweb.dto.PerfilDto;
+import com.claro.gestionrecursosweb.dto.LineaProductoDto;
+import com.claro.gestionrecursosweb.dto.PersonaDto;
+import com.claro.gestionrecursosweb.dto.ProveedorDto;
 
 @Controller
-@RequestMapping("/Perfil")
-public class PerfilController extends BaseController {
+@RequestMapping("/LineaProducto")
+public class LineaProductoController extends BaseController {
 	
-	@Value("${claro.dominio.perfil.nombre}")
+	@Value("${claro.dominio.lineaproducto.nombre}")
 	private String dominio;
 	
 	@Autowired
-	private ApiService<PerfilDto, Integer> service;
-		
+	private ApiService<LineaProductoDto, Integer> service;
+
 	public void configurarService() {
 		service.setapiservicename(dominio);
 	}
 	
-	@GetMapping("/Filtro")
+	@GetMapping("/filtro")
 	public String filtro(Model model) {
 		configurarService();
+		Iterable<LineaProductoDto> dto = service.findAll(LineaProductoDto.class);
+		model.addAttribute("modelo", dto);		
+		System.out.println(model.toString());
 		
-		Iterable<PerfilDto> dto = service.findAll(PerfilDto.class);
-		
-		model.addAttribute("modelo", dto);
-		return dominio + "/Filtro";
+		return  dominio + "/LineaProducto";
 	}
 	
 	@GetMapping("Crear")
 	public String crear(Model modelo) {
 		configurarService();
 		modelo.addAttribute("cl_formaction", "Crear");
-		
-		modelo.addAttribute("modelo", new PerfilDto());
-		cargarListas(modelo);
-		return dominio + "/Perfil";
+		modelo.addAttribute("modelo", new LineaProductoDto());
+		return dominio + "/CrearLineaProducto";
 	}
 	
 	@PostMapping("/Crear")
-	public String crear(PerfilDto dto, BindingResult result, Model modelo, HttpServletRequest request) {
+	public String crear(LineaProductoDto dto, BindingResult result, Model modelo, HttpServletRequest request) {
 		configurarService();
 		modelo.addAttribute("cl_formaction", "Crear");
-		
-		PerfilDto dtoResultado = service.insert(dto, PerfilDto.class);
-		
+		dto.setFechacreacion(new Date());
+		dto.setFechamodificacion(new Date());
+		LineaProductoDto dtoResultado = service.insert(dto, LineaProductoDto.class);
 		return redireccion("Editar", dtoResultado.getId().toString(), "S", "C", request);
 	}
 	
@@ -68,30 +69,26 @@ public class PerfilController extends BaseController {
 		mostrarMensajes(modelo, cla);		
 		modelo.addAttribute("cl_formaction", "Editar");
 		
-		Optional<PerfilDto> dtoResultado = service.findById(id, PerfilDto.class);
+		Optional<LineaProductoDto> dtoResultado = service.findById(id, LineaProductoDto.class);
+		System.out.println("########### valores "+dtoResultado.toString());
 		if (dtoResultado == null)
-			dtoResultado = Optional.of(new PerfilDto());
+			dtoResultado = Optional.of(new LineaProductoDto());
 				
 		modelo.addAttribute("modelo", dtoResultado.get());
-		cargarListas(modelo);
-		return dominio + "/Perfil";
+		return dominio + "/CrearLineaProducto";
 	}
 	
 	@PostMapping("/Editar")
-	public String editar(PerfilDto dto, BindingResult result, Model modelo) {
+	public String editar(LineaProductoDto dto, BindingResult result, Model modelo) {
 		configurarService();		
 		modelo.addAttribute("cl_formaction", "Editar");
-		
-		PerfilDto dtoResultado = service.update(dto.getId(), dto, PerfilDto.class);				
+		dto.setFechamodificacion(new Date());
+		LineaProductoDto dtoResultado = service.update(dto.getId(), dto, LineaProductoDto.class);				
 		modelo.addAttribute("modelo", dtoResultado);
 		
 		mostrarMensajes(modelo, "S", "U");
-		cargarListas(modelo);
-		return dominio + "/Perfil";
+		return dominio + "/CrearLineaProducto";
 	}
 	
-	private void cargarListas(Model modelo) {
 		
-	}
-
 }

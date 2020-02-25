@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,11 +22,14 @@ import com.claro.gestionrecursosweb.dto.PerfilnivelDto;
 @RequestMapping("/PerfilNivel")
 public class PerfilNivelController extends BaseController {
 	
+	@Value("${claro.dominio.perfilnivel.nombre}")
+	private String dominio;
+	
 	@Autowired
 	private ApiService<PerfilnivelDto, Integer> service;
 		
 	public void configurarService() {
-		service.setapiservicename(dominio_perfilnivel);
+		service.setapiservicename(dominio);
 	}
 	
 	@GetMapping("/Filtro")
@@ -35,7 +39,7 @@ public class PerfilNivelController extends BaseController {
 		Iterable<PerfilnivelDto> dto = service.findAll(PerfilnivelDto.class);
 		
 		model.addAttribute("modelo", dto);
-		return dominio_perfilnivel + "/Filtro";
+		return dominio + "/Filtro";
 	}
 	
 	@GetMapping("Crear")
@@ -45,7 +49,7 @@ public class PerfilNivelController extends BaseController {
 		
 		modelo.addAttribute("modelo", new PerfilnivelDto());
 		cargarListas(modelo);
-		return dominio_perfilnivel + "/PerfilNivel";
+		return dominio + "/PerfilNivel";
 	}
 	
 	@PostMapping("/Crear")
@@ -70,7 +74,7 @@ public class PerfilNivelController extends BaseController {
 				
 		modelo.addAttribute("modelo", dtoResultado.get());
 		cargarListas(modelo);
-		return dominio_perfilnivel + "/PerfilNivel";
+		return dominio + "/PerfilNivel";
 	}
 	
 	@PostMapping("/Editar")
@@ -83,7 +87,7 @@ public class PerfilNivelController extends BaseController {
 		
 		mostrarMensajes(modelo, "S", "U");
 		cargarListas(modelo);
-		return dominio_perfilnivel + "/PerfilNivel";
+		return dominio + "/PerfilNivel";
 	}
 	
 	private void cargarListas(Model modelo) {

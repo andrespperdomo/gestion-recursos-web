@@ -40,6 +40,7 @@
 			                </li>
 			            </ul>
 			        </div>
+			
 			        <a class="nav-link collapsed text-truncate" href="#submenu-param-perfiltipo" data-toggle="collapse" data-target="#submenu-param-perfiltipo">
 		        		<i class="far fa-address-card"></i> 
 		        		<span>Tipo</span>
@@ -81,7 +82,28 @@
 			            </ul>
 			        </div>
 		        </div>
+		        	<a class="nav-link collapsed text-truncate" href="#submenu-admin-lineaproducto" data-toggle="collapse" data-target="#submenu-admin-lineaproducto">
+	        		<i class="fas fa-archive"></i> 
+	        		<span>Linea producto</span>
+	        	</a>
+	        	<div class="collapse cl-submenu cl-menu-group" id="submenu-admin-lineaproducto">
+		            <ul class="flex-column pl-2 nav">
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/LineaProducto/filtro?clm=adlpfi">
+		                		<i class="fas fa-search"></i>
+		                		<span>Buscar</span>
+		                	</a>
+		                </li>
+		                <li class="nav-item">
+		                	<a class="nav-link py-0" href="/LineaProducto/Crear?clm=adlpnu">
+		                		<i class="fas fa-plus"></i>
+		                		<span>Nuevo</span>
+		                	</a>
+		                </li>
+		            </ul>
+		        </div>
 	        </div>
+	        
 	    </li>
 	    <li class="nav-item cl-menu-group" sec:authorize="hasAuthority('ADMIN')">
 	        <a class="nav-link collapsed text-truncate" href="#submenu-admin" data-toggle="collapse" data-target="#submenu-admin">
@@ -178,20 +200,20 @@
 			                </li>
 			            </ul>
 			        </div>
-			        <a class="nav-link collapsed text-truncate" href="#submenu-persona-empleado" data-toggle="collapse" data-target="#submenu-persona-empleado">
+			        <a class="nav-link collapsed text-truncate" href="#submenu-persona-vinculacion" data-toggle="collapse" data-target="#submenu-persona-vinculacion">
 		        		<i class="far fa-file-alt"></i>
 		        		<span>Vinculación</span>
 		        	</a>
-		        	<div class="collapse cl-submenu cl-menu-group" id="submenu-persona-empleado">
+		        	<div class="collapse cl-submenu cl-menu-group" id="submenu-persona-vinculacion">
 			            <ul class="flex-column pl-2 nav">
 			                <li class="nav-item">
-			                	<a class="nav-link py-0" href="/Empleado/Filtro?clm=adpsvifi">
+			                	<a class="nav-link py-0" href="/PerfilTipo/Filtro?clm=adpevifi">
 			                		<i class="fas fa-search"></i>
 			                		<span>Buscar</span>
 			                	</a>
 			                </li>
 			                <li class="nav-item">
-			                	<a class="nav-link py-0" href="/Empleado/Crear?clm=adpsvinu">
+			                	<a class="nav-link py-0" href="/PerfilTipo/Crear?clm=papevinu">
 			                		<i class="fas fa-plus"></i>
 			                		<span>Nuevo</span>
 			                	</a>

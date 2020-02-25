@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,11 @@ import com.claro.gestionrecursosweb.dto.ProyectoDto;
 @Controller
 @RequestMapping("/EmpleadoControl")
 public class EmpleadoControlController extends BaseController {
+
+	@Value("${claro.dominio.empleadocontrol.nombre}")
+	private String dominio;
+	@Value("${claro.dominio.proyecto.nombre}")
+	private String dominio_proyecto;
 	
 	@Autowired
 	private ApiService<EmpleadoControlDto, Integer> service;
@@ -28,7 +34,7 @@ public class EmpleadoControlController extends BaseController {
 	private ApiService<ProyectoDto, Integer> serviceProyecto;
 		
 	public void configurarService() {
-		service.setapiservicename(dominio_empleadocontrol);
+		service.setapiservicename(dominio);
 	}
 	
 	@GetMapping("/Filtro")
@@ -38,7 +44,7 @@ public class EmpleadoControlController extends BaseController {
 		Iterable<EmpleadoControlDto> dto = service.findAll(EmpleadoControlDto.class);
 		
 		model.addAttribute("modelo", dto);
-		return dominio_empleadocontrol + "/Filtro";
+		return dominio + "/Filtro";
 	}
 	
 	@GetMapping("Crear")
@@ -48,7 +54,7 @@ public class EmpleadoControlController extends BaseController {
 		
 		modelo.addAttribute("modelo", new EmpleadoControlDto());
 		cargarListas(modelo);
-		return dominio_empleadocontrol + "/EmpleadoControl";
+		return dominio + "/EmpleadoControl";
 	}
 	
 	@PostMapping("/Crear")
@@ -73,7 +79,7 @@ public class EmpleadoControlController extends BaseController {
 				
 		modelo.addAttribute("modelo", dtoResultado.get());
 		cargarListas(modelo);
-		return dominio_empleadocontrol + "/EmpleadoControl";
+		return dominio + "/EmpleadoControl";
 	}
 	
 	@PostMapping("/Editar")
@@ -86,7 +92,7 @@ public class EmpleadoControlController extends BaseController {
 		
 		mostrarMensajes(modelo, "S", "U");
 		cargarListas(modelo);
-		return dominio_empleadocontrol + "/EmpleadoControl";
+		return dominio + "/EmpleadoControl";
 	}
 	
 	private void cargarListas(Model modelo) {

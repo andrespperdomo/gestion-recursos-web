@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,12 +21,15 @@ import com.claro.gestionrecursosweb.dto.ProveedorDto;
 @Controller
 @RequestMapping("/Proveedor")
 public class ProveedorController extends BaseController {
-		
+	
+	@Value("${claro.dominio.proveedor.nombre}")
+	private String dominio;
+	
 	@Autowired
 	private ApiService<ProveedorDto, Integer> service;
 		
 	public void configurarService() {
-		service.setapiservicename(dominio_proveedor);
+		service.setapiservicename(dominio);
 	}
 	
 	@GetMapping("/Filtro")
@@ -35,7 +39,7 @@ public class ProveedorController extends BaseController {
 		Iterable<ProveedorDto> dto = service.findAll(ProveedorDto.class);
 		
 		model.addAttribute("modelo", dto);
-		return dominio_proveedor + "/Filtro";
+		return dominio + "/Filtro";
 	}
 	
 	@GetMapping("Crear")
@@ -45,7 +49,7 @@ public class ProveedorController extends BaseController {
 		
 		modelo.addAttribute("modelo", new ProveedorDto());
 		cargarListas(modelo);
-		return dominio_proveedor + "/Proveedor";
+		return dominio + "/Proveedor";
 	}
 	
 	@PostMapping("/Crear")
@@ -70,7 +74,7 @@ public class ProveedorController extends BaseController {
 				
 		modelo.addAttribute("modelo", dtoResultado.get());
 		cargarListas(modelo);
-		return dominio_proveedor + "/Proveedor";
+		return dominio + "/Proveedor";
 	}
 	
 	@PostMapping("/Editar")
@@ -83,7 +87,7 @@ public class ProveedorController extends BaseController {
 		
 		mostrarMensajes(modelo, "S", "U");
 		cargarListas(modelo);
-		return dominio_proveedor + "/Proveedor";
+		return dominio + "/Proveedor";
 	}
 	
 	private void cargarListas(Model modelo) {

@@ -1,8 +1,5 @@
 $(function() {
 	
-	/* "Autocomplete" */
-	$.fn.selectpicker.Constructor.BootstrapVersion = '4';
-	
 	/**
 	 * Menú principal
 	 */
@@ -62,6 +59,10 @@ $(function() {
 	$(".cl-menu a.cl-menu-activo").each(function() {
 		$("ol.breadcrumb").append('<li class="breadcrumb-item">' + $(this).find("span").text() + '</li>');
 	});
+	
+	
+	/* "Autocomplete" */
+	$.fn.selectpicker.Constructor.BootstrapVersion = '4';
 
 });
 
@@ -92,25 +93,4 @@ function clFormMantenerMenu() {
 			}
 		});
 	}
-}
-
-function solicitudAjax(_url, _method, _params, _fdone, _ferror) {
-	
-	if (!_fdone) {
-		_fdone = function (data) {
-			
-		};
-	}
-	
-	if (!_ferror) {
-		_ferror = function (err, er, e) {
-			
-		};
-	}
-	
-	$.ajax({
-		url: _url,
-		method: _method,
-		data: _params
-	}).done(_fdone).fail(_ferror);
 }
